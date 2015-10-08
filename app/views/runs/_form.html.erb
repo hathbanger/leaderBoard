@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :score %><br>
-    <%= f.text_field :score %>
-  </div>
-  <div class="field">
     <%= f.select :athlete_id, Athlete.all.collect {|x| [x.name, x.id]}, {}, :multiple => false %>
 
+  </div>
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.text_field :score %>
   </div>
   <div class="field">
     <%= f.select :event_id, Event.all.collect {|x| [x.title, x.id]}, {}, :multiple => false %>
