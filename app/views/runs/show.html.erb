@@ -1,22 +1,21 @@
 <p id="notice"><%= notice %></p>
+      <div class="jumbotron">
+      <h1><%= @run.event.title %></h1>
+        <h3> <%= @run.athlete.name %>'s <%= @run.athlete.runs.count.ordinalize  %> Run</h3>
+        	
+        	
+        	<%= link_to @run.event.title, @run.event, class: "btn btn-primary btn-lg" %>
+        	<%= link_to @run.score, @run, class: "btn btn-primary btn-success btn-lg" %>      
+        	<br>
+        	<br>  
 
-<h1>
- <%= @run.athlete.name %>
-  
-</h1>
+        	<%= image_tag @run.image.url %>
 
-<p>
-  <strong><%= link_to @run.event.title, @run.event %></strong>
-  
-</p>
-<p>
-  <strong>Score:</strong>
-  <%= link_to @run.score, @run %>
-</p>
+<br>
+<br>
+<br>
+<%= link_to 'Edit', edit_run_path(@run), class: "btn btn-primary btn-info btn-sm"  %>
+<%= link_to 'Runs', runs_path, class: "btn btn-primary btn-info btn-sm"  %>
 
-
-
-<%= link_to 'Edit', edit_run_path(@run) %><br><br>
-<%= link_to 'Runs', runs_path %> |
-<%= link_to 'Events', events_path %> |
-<%= link_to 'Athletes', athletes_path %>
+        </p>
+      </div>

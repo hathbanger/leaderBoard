@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008005247) do
+ActiveRecord::Schema.define(version: 20151008160547) do
 
   create_table "athletes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "athletes_events", id: false, force: :cascade do |t|
@@ -28,16 +32,24 @@ ActiveRecord::Schema.define(version: 20151008005247) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "eventlogo_file_name"
+    t.string   "eventlogo_content_type"
+    t.integer  "eventlogo_file_size"
+    t.datetime "eventlogo_updated_at"
   end
 
   create_table "runs", force: :cascade do |t|
     t.float    "score"
     t.integer  "athlete_id"
     t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "runs", ["athlete_id"], name: "index_runs_on_athlete_id"

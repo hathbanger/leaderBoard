@@ -1,20 +1,35 @@
 <p id="notice"><%= notice %></p>
-  <strong><%= @event.title %></strong>
-
-<p>
-  
-  <% @event.athletes.each do |athlete| %>
-  	<%= link_to athlete.name, new_run_path(@event)  %>
-	  	<% athlete.runs.where(:event_id => @event).order(score: :desc).each do |run| %>
-	  		<%= link_to run.score, run %>
+<div class="jumbotron">
+	<h1><%= @event.title %></h1>
+	<%= image_tag @event.eventlogo.url(:medium) %>
+</div>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Nationality</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @event.athletes.each do |athlete| %>
+      <tr class="success">
+        <td><%= link_to athlete.name, new_run_path(@event), class: "btn btn-success"  %></td>
+        <td>USA</td>
+		<% athlete.runs.where(:event_id => @event).order(score: :desc).each do |run| %>
+		<td>
+	  		<%= link_to run.score, run, class: "btn btn-error" %>
+        </td>
 	  	<% end %>
-	  	<br/>
-  <% end %>
+  <% end %>        
+      </tr>
+    </tbody>
+  </table>
 
-</p>
-
+<%= link_to 'New Run', new_run_path(@event) %> | 
 <%= link_to 'Edit', edit_event_path(@event) %> | 
 <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
 <br><br>
 <%= link_to 'Events', events_path %> |
 <%= link_to 'Athletes', athletes_path %>
+
+</div>

@@ -15,8 +15,10 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
     <%= f.select :athlete_ids, Athlete.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
-
   </div>
+  <div class="field">
+    <%= f.file_field :eventlogo %>
+  </div>    
   <div class="actions">
     <%= f.submit %>
   </div>

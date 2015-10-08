@@ -19,9 +19,13 @@
     <%= f.label :score %><br>
     <%= f.text_field :score %>
   </div>
+
   <div class="field">
     <%= f.select :event_id, Event.all.collect {|x| [x.title, x.id]}, {}, :multiple => false %>
   </div>
+  <div class="field">
+    <%= f.file_field :image %>
+  </div>  
   <div class="actions">
     <%= f.submit %>
   </div>

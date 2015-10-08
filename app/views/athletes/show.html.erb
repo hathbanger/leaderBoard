@@ -1,14 +1,33 @@
 <p id="notice"><%= notice %></p>
-<strong><%= @athlete.name %></strong>
-<p>
-<% @athlete.runs.each do |run| %>
 
-	<%= run.score %>
-	<%= link_to run.event.title, run.event %>
-	<br/>
-<% end %>
-  
-</p>
+<div class="jumbotron">
+	<h1><%= @athlete.name %></h1>
+	<%= image_tag @athlete.avatar.url(:medium) %>
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Nationality</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @athlete.runs.each do |run| %>
+      <tr class="success">
+        <td>
+        <%= link_to run.event.title, class: "btn btn-success"  %>
+        </td>
+        <td>USA</td>
+        <td>
+        <%= link_to run.score, class: "btn btn-success"  %></td>
+	<% end %>
+
+	  	<br/>       
+      </tr>
+    </tbody>
+  </table>
 <%= link_to 'Edit', edit_athlete_path(@athlete) %> |
 <%= link_to 'Back', athletes_path %> |
 <%= link_to 'Destroy', @athlete, method: :delete, data: { confirm: 'Are you sure?' } %>
