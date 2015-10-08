@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+  <strong><%= @event.title %></strong>
+
+<p>
+  
+  <% @event.athletes.each do |athlete| %>
+  	<%= link_to athlete.name, new_run_path(@event)  %>
+	  	<% athlete.runs.where(:event_id => @event).order(score: :desc).each do |run| %>
+	  		<%= link_to run.score, run %>
+	  	<% end %>
+	  	<br/>
+  <% end %>
+
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> 
+<br><br>
+<%= link_to 'Runs', runs_path %> |
+<%= link_to 'Events', events_path %> |
+<%= link_to 'Athletes', athletes_path %>

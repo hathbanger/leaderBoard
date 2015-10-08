@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<strong><%= @athlete.name %></strong>
+<p>
+<% @athlete.runs.each do |run| %>
+
+	<%= run.score %>
+	<%= link_to run.event.title, run.event %>
+	<br/>
+<% end %>
+  
+</p>
+<%= link_to 'Edit', edit_athlete_path(@athlete) %> |
+<%= link_to 'Back', athletes_path %> |
+<%= link_to 'Destroy', @athlete, method: :delete, data: { confirm: 'Are you sure?' } %>

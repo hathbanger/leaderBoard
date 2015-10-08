@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+ <%= @run.athlete.name %>
+  
+</h1>
+
+<p>
+  <strong><%= link_to @run.event.title, @run.event %></strong>
+  
+</p>
+<p>
+  <strong>Score:</strong>
+  <%= link_to @run.score, @run %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_run_path(@run) %><br><br>
+<%= link_to 'Runs', runs_path %> |
+<%= link_to 'Events', events_path %> |
+<%= link_to 'Athletes', athletes_path %>
