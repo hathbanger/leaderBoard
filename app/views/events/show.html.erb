@@ -1,7 +1,17 @@
 <p id="notice"><%= notice %></p>
 <div class="jumbotron">
 	<h1><%= @event.title %></h1>
-	<%= image_tag @event.eventlogo.url(:medium) %>
+<div class="row">
+  <div class="col-md-4">
+	<%= image_tag @event.eventlogo.url(:thumb) %>
+  </div>
+  <div class="col-md-4">
+	<%= image_tag @event.eventlogo.url(:thumb) %>
+  </div>
+  <div class="col-md-4">
+	<%= image_tag @event.eventlogo.url(:thumb) %>
+  </div>
+</div>
 </div>
 <table class="table table-hover">
     <thead>
