@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008170924) do
+ActiveRecord::Schema.define(version: 20151010211723) do
 
   create_table "athletes", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20151008170924) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "nationality"
+    t.string   "gender"
   end
 
   create_table "athletes_events", id: false, force: :cascade do |t|
