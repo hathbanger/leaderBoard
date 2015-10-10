@@ -1,28 +1,20 @@
 <p id="notice"><%= notice %></p>
+<div id="eventsJumbo" class="jumbotron">
+  <h1>LEADERBOARD</h1>
+</div>
+<div class="row"></div>
+	
+<div class="row"></div>
 <% @events.each do |event| %>
-<div class="jumbotron">
-  <h1><%= link_to event.title, event %></h1>
-  <%= image_tag event.eventlogo.url(:medium) %>
+<div class="col-md-3">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-2 img-centerimg-responsive">
+       	<%= link_to (image_tag event.eventlogo.url(:thumb)), event %>
+      </div>
+    </div>
+  </div>
 </div>
 <% end %>
-<% @events.each do |event| %>
-  <div class="col-sm-4">
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <%= link_to event.title, event  %>
-        </h3>
-      </div>
-      <div class="panel-body">
-        <% event.athletes.each do |athlete| %>
-          <%= athlete.name %>
-          <% athlete.runs.where(event_id: event.id).each do |run| %>
-            |
-            <%= link_to run.score, run %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>  
-  </div>
-<% end %>
+
 

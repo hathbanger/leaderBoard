@@ -12,14 +12,48 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-    <%= f.select :athlete_ids, Athlete.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+
   </div>
-  <div class="field">
-    <%= f.file_field :eventlogo %>
-  </div>    
+ 
   <div class="actions">
-    <%= f.submit %>
+    
   </div>
+
+
+<form class="form-horizontal">
+  <fieldset>
+
+    <div class="form-group">
+      <label for="eventTitle" class="col-lg-2 control-label">Title</label>
+      <div class="col-lg-10">
+        <%= f.text_field :title, id: "eventTitle", class: "form-control" %>        
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="eventTitle" class="col-lg-2 control-label">Athletes</label>
+      <div class="col-lg-10">
+            <%= f.select :athlete_ids, Athlete.all.collect {|x| [x.name, x.id]}, {}, :multiple => true, class: "form-control" %>        
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="profilePicture" class="col-lg-2 control-label">Profile Picture</label>
+      <div class="col-lg-10">
+        <div class="checkbox">
+          <label>
+              <div class="field">
+                <%= f.file_field :eventlogo %>
+              </div>   
+          </label>
+        </div>
+      </div>
+    </div>
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary"><%= f.submit %>
+        </button>
+      </div>
+    </div>
 <% end %>
+  </fieldset>
+</form>

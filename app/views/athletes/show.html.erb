@@ -1,9 +1,62 @@
 <p id="notice"><%= notice %></p>
 
-<div class="jumbotron">
-	<h1><%= @athlete.name %></h1>
-	<%= image_tag @athlete.avatar.url(:medium) %>
-  <%= @athlete.nationality  %>
+<div class="jumbotron text-center">
+  <div class="col-md-6 clearfix">
+      <%= image_tag @athlete.avatar.url(:medium), class: "clearfix" %>      
+      <h1><%= @athlete.name %></h1>
+      <h1><%= @athlete.nationality %></h1>
+  </div>    
+  <div class="clearfix"></div>
+    <div class="col-md-6">
+    </div>
+    hi
+</div>
+
+<div class="col-md-6">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @athlete.events.each do |event| %>
+      <tr class="success">
+        <td>
+        <%= link_to event.title, event, class: "btn btn-success"  %>
+        </td>
+        <td>
+        <%= link_to event.runs.where(athlete_id: @athlete), class: "btn btn-success"  %></td>
+  <% end %>
+
+      <br/>       
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-6">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @athlete.runs.each do |run| %>
+      <tr class="success">
+        <td>
+        <%= link_to run.event.title, class: "btn btn-success"  %>
+        </td>
+        <td>
+        <%= link_to run.score, class: "btn btn-success"  %></td>
+  <% end %>
+
+      <br/>       
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <table class="table table-hover">
