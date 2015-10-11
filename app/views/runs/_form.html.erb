@@ -21,7 +21,7 @@
   </div>
 
   <div class="field">
-    <%= f.select :event_id, Event.all.collect {|x| [x.title, x.id]}, {}, :multiple => false %>
+    <%= f.select :event_id, @run.event %>
   </div>
   <div class="field">
     <%= f.file_field :image %>

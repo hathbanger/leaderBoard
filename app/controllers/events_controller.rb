@@ -4,14 +4,17 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.order('created_at DESC').all
+    @events = Event.order('created_at ASC').all
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
-    @runs = Run.order(score: :asc).find_by(event_id: @event)
-    @athletes = Athlete.all.where(:event_id => @event)
+    @runs = @event.runs.all
+    @order = @runs.order(score: :desc)
+    @highscore = @runs.order(score: :desc).first
+    @athletes = @event.athletes.all.uniq
+    @ath = @order.each.collect{|ath|[ath.athlete.name]}
   end
 
   # GET /events/new
@@ -71,6 +74,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :eventlogo, run_ids: [:score], athlete_ids: [])
+      params.require(:event).permit(:title, :date, :eventlogo, run_ids: [:score], athlete_ids: [])
     end
 end

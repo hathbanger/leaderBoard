@@ -1,36 +1,71 @@
 <p id="notice"><%= notice %></p>
 
-<div class="jumbotron text-center">
-      <%= image_tag @athlete.avatar.url(:medium), class: "clearfix" %>  
-      <div class="clearfix"></div>
-  <div class="col-md-6 clearfix">
-    
-      <h1><%= @athlete.name %></h1>
-  </div>   
-    <div class="col-md-6 clearfix">
-    </div>
-      <h1><%= @athlete.nationality %></h1>
+<div class="col-md-6">
+  <div class="jumbotron text-center">
+        <%= image_tag @athlete.avatar.url(:medium), class: "clearfix" %>  
+        <div class="clearfix"></div>
+  </div>
 </div>
+<div class="col-md-6">
+  <div class="jumbotron text-center">
+        <h3><%= @athlete.name %></h3>
+    <div class="col-md-6 clearfix">
+      <p>
+        Age: <%= @athlete.age %>
+      </p>
+    </div>   
+      <div class="col-md-6 clearfix">
+      </div>
+        <p><%= @athlete.nationality %></p>
+  </div>
+</div>
+<div class="clearfix"></div>
+
 
 <div class="col-md-6">
-          <%= image_tag @athlete.runs.each.first.image.url(:thumb) %>
+  <div class="jumbotron text-center">
+  <h3>Most Recent Run</h3>
+  <%= image_tag @athlete.runs.each.first.image.url(:medium) %>
+  <br/>
+  <br/>
+  <br/>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= @athlete.runs.each.first.event.title %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= @athlete.runs.each.first.score %>
+        </div>          
+      </div>  
+    </div>
+    <div class="clearfix"></div>
+  </div>
 </div>
 <div class="col-md-6">
   <table class="table table-hover">
     <thead>
       <tr>
         <th>Event</th>
-        <th>Score</th>
+        <th>Highest Score</th>
       </tr>
     </thead>
     <tbody>
-    <% @athlete.runs.each do |run| %>
-      <tr class="success">
+    <% @athlete.events.each do |event| %>
+      <tr class="info2">
         <td>
-        <%= link_to run.event.title, class: "btn btn-success"  %>
+          <%= link_to (image_tag event.eventlogo.url(:favi)), event %>
         </td>
         <td>
-        <%= link_to run.score, class: "btn btn-success"  %></td>
+          <%= event.title %>
+        </td>
+        <td>
+        <%= link_to event.runs.order(:score).first %></td>
   <% end %>
 
       <br/>       
@@ -38,24 +73,33 @@
     </tbody>
   </table>
 </div>
+<% @runs.each do |runs| %>
+  <>
+<% end %>
 
 <table class="table table-hover">
     <thead>
       <tr>
         <th>Event</th>
+      <% @athlete.events.each do |event| %>
+        <% event.runs.each do |run| %>
         <th>Score</th>
+        <% end %>
+      <% end %>
       </tr>
     </thead>
     <tbody>
-    <% @athlete.runs.each do |run| %>
+    <% @athlete.events.each do |event| %>
       <tr class="success">
         <td>
-        <%= link_to run.event.title, class: "btn btn-success"  %>
+        <%= link_to event.title, event, class: "btn btn-success"  %>
         </td>
-        <td>
-        <%= link_to run.score, class: "btn btn-success"  %></td>
-	<% end %>
-
+        <% event.runs.where(athlete_id: @athlete).order(score: :desc).each do |run| %>
+          <td>
+            <%= link_to run.score, run %>
+          </td>
+        <% end %>
+	  <% end %>
 	  	<br/>       
       </tr>
     </tbody>

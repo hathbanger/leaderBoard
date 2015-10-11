@@ -11,6 +11,7 @@ class AthletesController < ApplicationController
   # GET /athletes/1.json
   def show
     @event = Event.all
+    @runs = Run.all.where(athlete_id: @athlete)
   end
 
   # GET /athletes/new
@@ -61,6 +62,9 @@ class AthletesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -70,6 +74,6 @@ class AthletesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def athlete_params
-      params.require(:athlete).permit(:name, :avatar, :nationality, :runs, event_attributes: [:title])
+      params.require(:athlete).permit(:name, :avatar, :nationality, :birthday, :runs, event_attributes: [:title])
     end
 end

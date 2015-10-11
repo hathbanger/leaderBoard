@@ -15,10 +15,15 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.label :birthday %><br>
+    <%= f.date_field :birthday %>
+  </div>
 
 <div class="field">
   <%= f.select :nationality, Country.all.collect {|x| [x.name]}, {}, :multiple => false %>
 </div>
+<%= image_tag @athlete.avatar.url(:thumb)  %>
   <div class="field">
     <%= f.file_field :avatar %>
   </div> 
