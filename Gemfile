@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 gem 'therubyracer'
 # Use Unicorn as the app server
+gem 'twitter', '~> 5.15.0'
 # gem 'unicorn'
 gem 'twitter-bootswatch-rails', '~> 3.3'
 gem 'twitter-bootswatch-rails-fontawesome', '~> 4.3'

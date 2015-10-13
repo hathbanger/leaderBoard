@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013033902) do
+ActiveRecord::Schema.define(version: 20151013163525) do
 
   create_table "athletes", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20151013033902) do
     t.string   "nationality"
     t.string   "gender"
     t.date     "birthday"
+    t.string   "twitterHandle"
   end
 
   create_table "athletes_events", id: false, force: :cascade do |t|

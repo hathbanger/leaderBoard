@@ -12,6 +12,11 @@ class AthletesController < ApplicationController
   def show
     @event = Event.all
     @runs = Run.all.where(athlete_id: @athlete)
+
+    @twitHand = @athlete.twitterHandle
+    @tweets = twitter_client.user_timeline(@twitHand).collect do |tweet|
+      "#{tweet.text}"
+    end
   end
 
   # GET /athletes/new
@@ -74,6 +79,6 @@ class AthletesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def athlete_params
-      params.require(:athlete).permit(:name, :avatar, :nationality, :birthday, :runs, event_attributes: [:title])
+      params.require(:athlete).permit(:name, :avatar, :nationality, :birthday, :twitterHandle, :runs, event_attributes: [:title])
     end
 end

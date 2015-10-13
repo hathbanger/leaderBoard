@@ -9,6 +9,8 @@
 <div class="col-md-6">
   <div class="jumbotron text-center">
         <h3><%= @athlete.name %></h3>
+
+
     <div class="col-md-6 clearfix">
       <p>
         Age: <%= @athlete.age %>
@@ -17,6 +19,14 @@
       <div class="col-md-6 clearfix">
       </div>
         <p><%= @athlete.nationality %></p>
+
+
+<blockquote class="pull-right">
+  <p><%= @tweets.first %></p>
+  <small><cite title="Source Title"><%= link_to @athlete.twitterHandle, @athlete %></cite></small>
+</blockquote>
+<div class="clearfix"></div>
+  
   </div>
 </div>
 <div class="clearfix"></div>
