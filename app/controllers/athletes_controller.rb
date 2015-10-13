@@ -13,6 +13,7 @@ class AthletesController < ApplicationController
     @event = Event.all
     @runs = Run.all.where(athlete_id: @athlete)
 
+    @instagram = Instagram.user_recent_media("1333333632", {:count => 3})
     @twitHand = @athlete.twitterHandle
     @tweets = twitter_client.user_timeline(@twitHand).collect do |tweet|
       "#{tweet.text}"

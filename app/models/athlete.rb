@@ -12,5 +12,4 @@ class Athlete < ActiveRecord::Base
     ((Date.today - birthday) / 365).floor
   end
   
-
 end

@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     @real = @event.runs.all.order(score: :desc).collect{|x|x.athlete}
     @results = @real.uniq
 
-
+    
 
   end
 

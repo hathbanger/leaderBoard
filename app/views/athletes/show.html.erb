@@ -31,6 +31,9 @@
 </div>
 <div class="clearfix"></div>
 
+<% @instagram.each do |instagram| %>
+    <%= image_tag instagram.images.thumbnail.url %>
+<% end %>
 
 <div class="col-md-6">
   <div class="jumbotron text-center">

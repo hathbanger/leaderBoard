@@ -13,5 +13,4 @@ def twitter_client
 end
 
 
-
 end
