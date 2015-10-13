@@ -10,17 +10,19 @@ class RunsController < ApplicationController
   # GET /runs/1
   # GET /runs/1.json
   def show
+    
   end
 
   # GET /runs/new
   def new
-    @run = Run.new
+    @event = Event.find(params[:event_id])
+    @run = Run.new(event_id: @event)
+    @athlete = Athlete.find(params[:athlete_id])
   end
 
   # GET /runs/1/edit
   def edit
   end
-
   # POST /runs
   # POST /runs.json
   def create

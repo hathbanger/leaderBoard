@@ -11,10 +11,12 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @runs = @event.runs.all
+    athlete = Athlete.find(params[:id])
+    @hiscore = @runs.where(athlete_id: athlete).order(score: :desc).collect{|x|x.score}[0]
     @order = @runs.order(score: :desc)
     @highscore = @runs.order(score: :desc).first
     @athletes = @event.athletes.all.uniq
-    @ath = @order.each.collect{|ath|[ath.athlete.name]}
+    @ath = @event.runs(score: :desc).each.collect{|ath|[ath.athlete]}
   end
 
   # GET /events/new
@@ -30,6 +32,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @athlete = Athlete.find(params[:id])
 
     respond_to do |format|
       if @event.save

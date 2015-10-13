@@ -37,6 +37,8 @@ gem 'twitter-bootswatch-rails-helpers'
 
 gem "paperclip", "~> 4.3"
 gem 'countries', :require => 'global'
+gem 'paperclip-av-transcoder'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

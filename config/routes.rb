@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :runs
   resources :athletes
-  resources :events
+  resources :events do
+  	resources :runs
+  end
+  resources :runs
   root 'events#index'
 end
