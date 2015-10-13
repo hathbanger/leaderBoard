@@ -39,6 +39,12 @@
     </div>
 
     <div class="form-group">
+      <label for="eventTitle" class="col-lg-2 control-label">Rounds</label>
+      <div class="col-lg-10">
+        <%= f.text_field :rounds, id: "rounds", class: "form-control" %>        
+      </div>
+    </div>
+    <div class="form-group">
       <label for="eventTitle" class="col-lg-2 control-label">Athletes</label>
       <div class="col-lg-10">
             <%= f.select :athlete_ids, Athlete.all.collect {|x| [x.name, x.id]}, {}, :multiple => true, class: "form-control" %>        

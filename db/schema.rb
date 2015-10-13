@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012020847) do
+ActiveRecord::Schema.define(version: 20151013033902) do
 
   create_table "athletes", force: :cascade do |t|
     t.string   "name"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20151012020847) do
     t.datetime "eventlogo_updated_at"
     t.date     "date"
     t.boolean  "finished",               default: false
+    t.integer  "rounds"
   end
 
   create_table "runs", force: :cascade do |t|

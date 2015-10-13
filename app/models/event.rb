@@ -9,8 +9,16 @@ class Event < ActiveRecord::Base
 	  evnt = Date.new(Date.today.year, date.month, date.day)
 	  evnt += 1.year if Date.today >= evnt
 	  (evnt - Date.today).to_i
-	end  
+	end 
+
+	
+	def athlete_run_count(athlete)
+		self.athletes.all.where(athlete_id: athlete).runs.size
+	end
 
 	
 
+	def results 
+		self.runs.all.order(score: :desc).collect{|x|x.athlete}
+	end
 end

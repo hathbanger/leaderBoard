@@ -13,10 +13,14 @@ class EventsController < ApplicationController
     @runs = @event.runs.all
     athlete = Athlete.find(params[:id])
     @hiscore = @runs.where(athlete_id: athlete).order(score: :desc).collect{|x|x.score}[0]
-    @order = @runs.order(score: :desc)
-    @highscore = @runs.order(score: :desc).first
     @athletes = @event.athletes.all.uniq
+    @athlts = @event.athletes.all
     @ath = @event.runs(score: :desc).each.collect{|ath|[ath.athlete]}
+      
+    @runCount = @runs.where(athlete_id: athlete).size   
+    @real = @event.runs.all.order(score: :desc).collect{|x|x.athlete}
+    @results = @real.uniq
+
   end
 
   # GET /events/new
@@ -32,7 +36,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @athlete = Athlete.find(params[:id])
 
     respond_to do |format|
       if @event.save
@@ -77,6 +80,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :date, :eventlogo, run_ids: [:score], athlete_ids: [])
+      params.require(:event).permit(:title, :date, :rounds, :eventlogo, run_ids: [:score], athlete_ids: [])
     end
 end

@@ -16,42 +16,29 @@
   <div class="col-md-6">
       <div class="jumbotron">
           <h4><%= @event.athletes.size %> athletes</h4>
+          <h4><%= @event.rounds %> rounds</h4>
       </div>
   </div>
 </div>
-<%= @hiscore %>
 <!-- TABLE -->
 <table class="table table-hover table-condensed">
     <thead>
       <th> </th>
       <th> </th>
-      <th>Top Score</th>
-      <th>Add Run</th>
 
     </thead>
     <tbody>
-    <% @athletes.each do |athlete| %>
+    <% @results.each do |athlete| %>
       <tr class="active">
+
         <td>
           <%= link_to (image_tag athlete.avatar.url(:favi)), athlete %>
         </td>
+
         <td>
           <%= link_to athlete.name, athlete, class: "btn btn-warning"  %>
-
         </td>
-
-        <% if @runs.where(athlete_id: athlete).any? %>
-        <td>
-        <%= link_to @runs.where(athlete_id: athlete).order(score: :desc).collect{|x|x.score}[0], @event, class: "btn btn-success" %>
-        </td>
-      <% end %>
-
-        <td>
-          <%= link_to "+", new_event_run_path(@event, athlete_id: athlete.id), class: "btn btn-primary" %>
-        </td>
-
-
-
+        
         <% athlete.runs.where(:event_id => @event).order(score: :desc).each do |run| %>
           <td>
             <%= link_to run.score, run, class: "btn btn-error" %>
@@ -67,6 +54,8 @@
               <%= link_to run.score, run, class: "btn btn-success" %>
             </td>
         <% end %>
+
+
         <% @runs.all.where(athlete_id: run.athlete.id).uniq.each do |allrun| %>
             <td>
               <%= allrun.score %>
@@ -74,51 +63,23 @@
         <% end %>
         </tr>
       <% end %>
-      <td>
-      </td>
-  <% end %>        
+<% if athlete.runs.where(event_id: @event).all.size < @event.rounds %>
+        <td>
+          <%= link_to "+", new_event_run_path(@event, athlete_id: athlete.id), class: "btn btn-primary" %>
+        </td>
+<% end %>
+        <td>|</td>
+        <td>
+      <% if @runs.where(athlete_id: athlete).any? %>
+        <%= link_to @runs.where(athlete_id: athlete).order(score: :desc).collect{|x|x.score}[0], @event, class: "btn btn-success" %>
+        </td>
+      <% end %>
+
+      <% end %>        
       </tr>
     </tbody>
   </table>
 
-
-
-<!-- TABLE -->
-<table class="table table-hover table-condensed">
-    <thead>
-      <tr>d
-      </tr>
-    </thead>
-    <tbody>
-
-    <% @order.all.each do |run| %>
-      <tr class="active">
-        <td>
-          <%= link_to (image_tag run.athlete.avatar.url(:favi)), run %>
-        </td>
-        <td>
-          <%= link_to run.athlete.name, run, class: "btn btn-warning"  %>
-        </td>
-
-        <% if run.score %>
-            <td>
-              <%= link_to run.score, run, class: "btn btn-success" %>
-        <% end %>
-            </td>
-            <% @runs.all.where(athlete_id: run.athlete.id).uniq.each do |allrun| %>
-            <td>
-              <%= allrun.score %>
-            </td>
-        <% end %>
-      </tr>
-    <% end %> 
-  </tbody>
-</table>
-
-        <% @athletes.each do |athlete| %>
-          <%= athlete.name  %>
-          <br/>
-        <% end %>
 
 <%= link_to 'New Run', new_run_path(@event) %> | 
 <%= link_to 'Edit', edit_event_path(@event) %> | 
